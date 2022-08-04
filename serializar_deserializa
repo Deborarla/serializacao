@@ -1,0 +1,26 @@
+import operacoes.Deserializador;
+import operacoes.Serializador;
+import pojo.Fruta;
+ 
+public class Principal {
+    public static void main(String args[]){
+       //serializa
+       Serializador s = new Serializador();
+       Fruta fruta = new Fruta("Maça", "Vermelha");
+        try {
+            s.serializar("/deborarla/serializacao/Frutas", fruta);
+        } catch (Exception ex) {
+            System.err.println("Falha ao serializar! - " + ex.toString());
+        }
+         
+        //deserializa       
+        Deserializador d = new Deserializador();
+        fruta = null;
+        try {
+            fruta = (Fruta) d.deserializar("/home/gustavo/fruta");
+        } catch (Exception ex) {
+            System.err.println("Falha ao deserializar! - " + ex.toString());
+        }
+        System.out.println(fruta.getNome() + " - " + fruta.getCor());
+    }
+}
